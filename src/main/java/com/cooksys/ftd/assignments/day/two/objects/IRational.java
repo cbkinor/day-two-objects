@@ -91,7 +91,12 @@ interface IRational {
      * @throws IllegalArgumentException if that is null
      */
     default IRational mul(IRational that) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    	
+    	int num = getNumerator() * that.getNumerator();
+    	
+    	int denom = getDenominator() * that.getDenominator();
+    	
+        return construct(num, denom);
     }
 
     /**

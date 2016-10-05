@@ -46,7 +46,7 @@ public class SimplifiedRational implements IRational {
     	{
     		throw new IllegalArgumentException("this is not a legal argument");
     	}
-		
+		//IF STATEMENT
 		if(numerator == 0)
 			return new int[] {numerator, denominator};
 		

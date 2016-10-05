@@ -74,6 +74,9 @@ public class Rational implements IRational {
      */
     @Override
     public boolean equals(Object obj) {
+    	try{
+    		
+    	
     	if (obj instanceof Rational) {
 			Rational obj1 = (Rational) obj;
 			int n2 = obj1.getNumerator();
@@ -84,10 +87,14 @@ public class Rational implements IRational {
 			}
 			if ((num == n2 && den == d2)) {
 				return true;
-			} else
-				return false;
-		} else
+			} 
 			return false;
+	    	}
+	    	}catch (ArithmeticException e){
+	    		 System.out.println("Error: Don't divide a number by zero");
+				
+	    	}
+    	return false;
     }
 
     /**

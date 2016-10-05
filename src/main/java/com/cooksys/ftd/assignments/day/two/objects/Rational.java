@@ -106,13 +106,9 @@ public class Rational implements IRational {
      */
     @Override
     public String toString() {
-
-    	if (getNumerator() == 0) {
-			return "0";
-		} else if ((getNumerator() > 0 && getDenominator() > 0) || (getNumerator() < 0 && getDenominator() < 0))
-			return Math.abs(getNumerator()) + "/" + Math.abs(getDenominator());
+    	 if ((getNumerator() < 0 != getDenominator() < 0))
+    		 return "-" + Math.abs(getNumerator()) + "/" + Math.abs(getDenominator());
 		else
-			return "-" + Math.abs(getNumerator()) + "/" + Math.abs(getDenominator());
-        
+			return Math.abs(getNumerator()) + "/" + Math.abs(getDenominator());
     }
 }

@@ -40,6 +40,8 @@ interface IRational {
         int den = getDenominator();
         num *= -1;
         return construct(num, den);
+        // Can refactor  all code to:
+        //return construct(getNumerator()*(-1), getDenominator());
     }
 
     /**
@@ -140,7 +142,7 @@ interface IRational {
      * @throws IllegalArgumentException if that is null or if the numerator of that is 0
      */
     default IRational div(IRational that) throws IllegalArgumentException {
-    	if (that == null){
+    	if (that == null || that.getNumerator() == 0){ // short circuit
         	throw new IllegalArgumentException("cannot be null");
         }
     	int n1 = this.getNumerator();

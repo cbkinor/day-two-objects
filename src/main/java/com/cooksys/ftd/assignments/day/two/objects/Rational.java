@@ -14,8 +14,19 @@ public class Rational implements IRational {
      * @param denominator the denominator of the rational value
      * @throws IllegalArgumentException if the given denominator is 0
      */
+	public int num;
+	public int den;
+	
     public Rational(int numerator, int denominator) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    	if(denominator == 0)
+    	{
+    		throw new IllegalArgumentException();
+    	}
+    	else
+    	{
+        num = numerator;
+        den = denominator;
+    	}
     }
 
     /**
@@ -31,7 +42,7 @@ public class Rational implements IRational {
      */
     @Override
     public int getDenominator() {
-        returm 8;
+        return 8;
     }
 
     /**
@@ -47,7 +58,12 @@ public class Rational implements IRational {
      */
     @Override
     public Rational construct(int numerator, int denominator) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    	if(denominator == 0)
+    	{
+    		throw new IllegalArgumentException("this is not a legal argument");
+    	}
+    	Rational r = new Rational(numerator, denominator);
+		return r;
     }
 
     /**
@@ -70,8 +86,16 @@ public class Rational implements IRational {
      */
     @Override
     public String toString() {
-    	String neg = "";
-    	if((getNumerator() < 0 && getDenominator() > 0))
-        return getNumerator() + "/" + getDenominator();
+    	String result;
+
+        if (getNumerator() == 0)
+           result = "0";
+        else
+           if (getDenominator() == 1)
+              result = getNumerator() + "";
+           else
+              result = getNumerator() + "/" + getDenominator();
+      
+        return result;
     }
 }

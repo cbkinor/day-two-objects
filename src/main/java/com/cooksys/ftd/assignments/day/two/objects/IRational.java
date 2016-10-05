@@ -74,8 +74,8 @@ interface IRational {
     	if (that == null){
         	throw new IllegalArgumentException("cannot be null");
             }
-            int n1 = getNumerator();
-            int d1 = getDenominator();
+            int n1 = this.getNumerator();
+            int d1 = this.getDenominator();
             int n2 = that.getNumerator();
             int d2 = that.getDenominator();
             int num = ((n1 * d2) + (n2 * d1));
@@ -97,8 +97,8 @@ interface IRational {
         if (that == null){
     	throw new IllegalArgumentException("cannot be null");
         }
-        int n1 = getNumerator();
-        int d1 = getDenominator();
+        int n1 = this.getNumerator();
+        int d1 = this.getDenominator();
         int n2 = that.getNumerator();
         int d2 = that.getDenominator();
         int num = (n1 * d2) - (n2 *d1);
@@ -142,7 +142,11 @@ interface IRational {
     default IRational div(IRational that) throws IllegalArgumentException {
     	if (that == null){
         	throw new IllegalArgumentException("cannot be null");
-            }
-    	return that;
+        }
+    	int n1 = this.getNumerator();
+        int d1 = this.getDenominator();
+        int n2 = that.getNumerator();
+        int d2 = that.getDenominator();
+    	return construct((n1 * d2),(n2 *d1));
     }
 }

@@ -5,6 +5,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 public class SimplifiedRational implements IRational {
 	private int num;
 	private int den;
+
 	/**
 	 * Determines the greatest common denominator for the given values
 	 *
@@ -19,8 +20,7 @@ public class SimplifiedRational implements IRational {
 	public static int gcd(int a, int b) throws IllegalArgumentException {
 		if (a <= 0 || b < 0) {
 			throw new IllegalArgumentException("your argument is incorrect");
-		}else
-		if (a == 0 || b == 0) {
+		} else if (a == 0 || b == 0) {
 			return a + b;
 		}
 		return gcd(b, a % b);
@@ -42,16 +42,15 @@ public class SimplifiedRational implements IRational {
 	 *             if the given denominator is 0
 	 */
 	public static int[] simplify(int numerator, int denominator) throws IllegalArgumentException {
-		if(denominator == 0)
-    	{
-    		throw new IllegalArgumentException("this is not a legal argument");
-    	}
-		//IF STATEMENT
-		if(numerator == 0)
-			return new int[] {numerator, denominator};
-		
-		int multiplyer = gcd(Math.abs(numerator),  Math.abs(denominator));
-		int[] sr = new int[]{ numerator / multiplyer, denominator / multiplyer};
+		if (denominator == 0) {
+			throw new IllegalArgumentException("this is not a legal argument");
+		}
+		// IF STATEMENT
+		if (numerator == 0)
+			return new int[] { numerator, denominator };
+
+		int multiplyer = gcd(Math.abs(numerator), Math.abs(denominator));
+		int[] sr = new int[] { numerator / multiplyer, denominator / multiplyer };
 		return sr;
 	}
 
@@ -71,17 +70,14 @@ public class SimplifiedRational implements IRational {
 	 *             if the given denominator is 0
 	 */
 	public SimplifiedRational(int numerator, int denominator) throws IllegalArgumentException {
-		if(denominator == 0)
-    	{
-    		throw new IllegalArgumentException("this is not a legal argument");
-    	}
-		else
-    	{
+		if (denominator == 0) {
+			throw new IllegalArgumentException("this is not a legal argument");
+		} else {
 			int[] simplifiedRatio = simplify(numerator, denominator);
-        num = simplifiedRatio[0];
-        den = simplifiedRatio[1];
-    	}
-		
+			num = simplifiedRatio[0];
+			den = simplifiedRatio[1];
+		}
+
 	}
 
 	/**
@@ -118,10 +114,9 @@ public class SimplifiedRational implements IRational {
 	 */
 	@Override
 	public SimplifiedRational construct(int numerator, int denominator) throws IllegalArgumentException {
-		if(denominator == 0)
-    	{
-    		throw new IllegalArgumentException("this is not a legal argument");
-    	}
+		if (denominator == 0) {
+			throw new IllegalArgumentException("this is not a legal argument");
+		}
 		SimplifiedRational sr = new SimplifiedRational(numerator, denominator);
 		return sr;
 	}
@@ -135,10 +130,9 @@ public class SimplifiedRational implements IRational {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		try{
-    		
-	    	
-	    	if (obj instanceof SimplifiedRational) {
+		try {
+
+			if (obj instanceof SimplifiedRational) {
 				SimplifiedRational obj1 = (SimplifiedRational) obj;
 				int n2 = obj1.getNumerator();
 				int d2 = obj1.getDenominator();
@@ -148,14 +142,20 @@ public class SimplifiedRational implements IRational {
 				}
 				if ((num == n2 && den == d2)) {
 					return true;
-				} 
+				}
 				return false;
-		    	}
-		    	}catch (ArithmeticException e){
-		    		 System.out.println("Error: Don't divide a number by zero");
-					
-		    	}
-	    	return false;
+			}
+		} catch (ArithmeticException e) {
+			System.out.println("Error: Don't divide a number by zero");
+
+		}
+		return false;
+		
+		// another way
+		//if (obj == null || !(obj instanceof IRational))
+		//	return false;
+		//return (((IRational) obj).getNumerator() == this.numerator)  // cast IRational to access getNumerator
+		//&& (((IRational) obj).getDenominator() == this.denominator)
 	}
 
 	/**

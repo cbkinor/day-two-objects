@@ -14,8 +14,8 @@ public class Rational implements IRational {
      * @param denominator the denominator of the rational value
      * @throws IllegalArgumentException if the given denominator is 0
      */
-	public int num;
-	public int den;
+	private int num;
+	private int den;
 	
     public Rational(int numerator, int denominator) throws IllegalArgumentException {
     	if(denominator == 0)
@@ -34,7 +34,7 @@ public class Rational implements IRational {
      */
     @Override
     public int getNumerator() {
-        return 5;
+        return num;
     }
 
     /**
@@ -42,7 +42,7 @@ public class Rational implements IRational {
      */
     @Override
     public int getDenominator() {
-        return 8;
+        return den;
     }
 
     /**
@@ -74,7 +74,20 @@ public class Rational implements IRational {
      */
     @Override
     public boolean equals(Object obj) {
-        return true;
+    	if (obj instanceof Rational) {
+			Rational obj1 = (Rational) obj;
+			int n2 = obj1.getNumerator();
+			int d2 = obj1.getDenominator();
+
+			if (d2 == 0) {
+				return false;
+			}
+			if ((num == n2 && den == d2)) {
+				return true;
+			} else
+				return false;
+		} else
+			return false;
     }
 
     /**
@@ -86,16 +99,13 @@ public class Rational implements IRational {
      */
     @Override
     public String toString() {
-    	String result;
 
-        if (getNumerator() == 0)
-           result = "0";
-        else
-           if (getDenominator() == 1)
-              result = getNumerator() + "";
-           else
-              result = getNumerator() + "/" + getDenominator();
-      
-        return result;
+    	if (getNumerator() == 0) {
+			return "0";
+		} else if ((getNumerator() > 0 && getDenominator() > 0) || (getNumerator() < 0 && getDenominator() < 0))
+			return Math.abs(getNumerator()) + "/" + Math.abs(getDenominator());
+		else
+			return "-" + Math.abs(getNumerator()) + "/" + Math.abs(getDenominator());
+        
     }
 }
